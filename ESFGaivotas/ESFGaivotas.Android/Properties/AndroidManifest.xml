@@ -9,6 +9,6 @@
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<application android:label="ESFGaivotas.Android">
-	  <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyCgYoht1C_MN_h9Tg7MFBqKX6W0IEQallM" />
+	  <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="xxxxx" />
   </application>
 </manifest>
