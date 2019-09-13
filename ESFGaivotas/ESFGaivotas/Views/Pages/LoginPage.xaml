@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:pages="clr-namespace:ESFGaivotas.Views.Pages"
+                xmlns:controls="clr-namespace:ESFGaivotas.Controls"
+                xmlns:dialogs="clr-namespace:ESFGaivotas.Views.Dialogs"
+                mc:Ignorable="d"
+                x:Class="ESFGaivotas.Views.Pages.LoginPage">
+    <ContentPage.Content>
+        <Grid>
+            
+            <StackLayout Spacing="5" VerticalOptions="Center">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <Image Source="Gaivota.png" />
+                    <Label Text="GAIVOTAS" TextColor="{StaticResource HighColor}" Margin="0,0,0,20" 
+                           FontFamily="Seagull" FontSize="20" FontAttributes="Bold" />
+                </StackLayout>
+
+                <StackLayout Spacing="5">
+                    <!--Login Input-->
+                    <StackLayout Spacing="2">
+                        <Label Text="Login" Style="{StaticResource lblEntryHead}" />
+                        <Frame Style="{StaticResource frmEntryFrame}" Padding="4">
+                            <Entry Text="{Binding Login, Mode=TwoWay}" Placeholder="Toque para digitar..."
+                                   Style="{StaticResource etrEntryField}"
+                                   IsEnabled="{Binding IsLoading, Converter={StaticResource CVTBooleanTOInvertBoolean}}" />
+                        </Frame>
+                    </StackLayout>
+
+                    <!--Password Input-->
+                    <StackLayout Spacing="2">
+                        <Label Text="Senha" Style="{StaticResource lblEntryHead}" />
+                        <Frame Style="{StaticResource frmEntryFrame}" Padding="4">
+                            <Entry Text="{Binding Password, Mode=TwoWay}" Placeholder="Toque para digitar..."
+                                   Style="{StaticResource etrEntryField}" IsPassword="True"
+                                   IsEnabled="{Binding IsLoading, Converter={StaticResource CVTBooleanTOInvertBoolean}}" />
+                        </Frame>
+                    </StackLayout>
+
+                    <Button Style="{StaticResource btnActionButton}" Text="Entrar" VerticalOptions="Start" Margin="0,10,0,0"
+                            Command="{Binding LoginAttempt}" />
+                </StackLayout>
+            </StackLayout>
+            
+            <!--Dialogs-->
+            <dialogs:CreateUserDialog Title="Criar Usuário" IsOpen="{Binding IsCreateUserOpen}" />
+            
+        </Grid>
+    </ContentPage.Content>
+</pages:BasePage>

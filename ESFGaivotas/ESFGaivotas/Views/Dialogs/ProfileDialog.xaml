@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<dialogs:BaseDialog xmlns="http://xamarin.com/schemas/2014/forms" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:dialogs="clr-namespace:ESFGaivotas.Views.Dialogs"
+                    x:Class="ESFGaivotas.Views.Dialogs.ProfileDialog"
+                    x:Name="baseDialog">
+    <ContentView.Content>
+        <Grid>
+
+            <!--Black Background-->
+            <BoxView Style="{StaticResource boxDialogBackground}" />
+
+            <!--Dialog Content-->
+            <Frame Style="{StaticResource frmDialogContent}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!--Dialog Title-->
+                    <Frame Grid.Row="0" Style="{StaticResource frmDialogTitle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Frame Grid.Column="0" CornerRadius="45" Padding="0"
+                                   Margin="0,5,5,5" HeightRequest="90" WidthRequest="90"
+                                   HorizontalOptions="Center" VerticalOptions="Center"
+                                   BackgroundColor="{StaticResource MediumColor}">
+                                <Image Source="Logo.png" />
+                            </Frame>
+
+                            <StackLayout Grid.Column="1">
+                                <Label Style="{StaticResource lblDialogTitle}"
+                                       Text="{Binding FirstName, StringFormat='Bom dia {0}!'}" FontSize="20"
+                                       Margin="5" />
+                                <Label Style="{StaticResource lblDialogTitle}"
+                                       Text="Veja suas contribuições até o momento:" FontSize="15" 
+                                       Margin="5" />
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                    
+                    <!--Total Weight-->
+                    <Frame Grid.Row="1" Margin="0,0,10,0" Padding="4,0,4,0" CornerRadius="6" BackgroundColor="{StaticResource HighColor}"
+                           HorizontalOptions="End">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="End" VerticalOptions="Center">
+                            <Label Text="{Binding Weight}" TextColor="{StaticResource HighTextColor}" VerticalOptions="Center"
+                                   BindingContext="{x:Reference baseDialog}"/>
+                            <Image Source="Weight.png" />
+                        </StackLayout>
+                    </Frame>
+                    
+                    <!--List of Debris-->
+                    <Grid Grid.Row="2" Margin="5">
+                        <CollectionView ItemsSource="{Binding DebrisCollection}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Span="3"
+                                                 HorizontalItemSpacing="4"
+                                                 VerticalItemSpacing="4"
+                                                 Orientation="Vertical" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame BackgroundColor="{StaticResource HighColor}" CornerRadius="6"
+                                           Padding="5" BorderColor="{StaticResource MediumColor}">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="{Binding DebrisType, Converter={StaticResource CVTDebrisTypeTOMediumImage}}" />
+                                            <Label Text="{Binding Quantity, StringFormat='x{0}'}" FontSize="16" FontAttributes="Bold" 
+                                                   VerticalOptions="End" HorizontalOptions="Center" 
+                                                   TextColor="{StaticResource LowTextColor}" />
+                                        </StackLayout>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+
+                    <!--Close-->
+                    <Button Grid.Row="3" Text="Fechar" TextColor="{StaticResource HighTextColor}"
+                            BindingContext="{x:Reference baseDialog}"
+                            BackgroundColor="{StaticResource HighColor}" HorizontalOptions="Center"
+                            VerticalOptions="End" CornerRadius="6" Command="{Binding CloseDialog}"
+                            Margin="5" />
+
+                </Grid>
+            </Frame>
+            
+        </Grid>
+    </ContentView.Content>
+</dialogs:BaseDialog>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<dialogs:BaseDialog xmlns="http://xamarin.com/schemas/2014/forms" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:dialogs="clr-namespace:ESFGaivotas.Views.Dialogs"
+                    mc:Ignorable="d"
+                    x:Class="ESFGaivotas.Views.Dialogs.CreateUserDialog"
+                    x:Name="baseDialog">
+    <ContentView.Content>
+        <Grid BindingContext="{x:Reference baseDialog}">
+            <!--Black Background-->
+            <BoxView Style="{StaticResource boxDialogBackground}" />
+
+            <!--Dialog Content-->
+            <Frame CornerRadius="24" BackgroundColor="{StaticResource LowColor}" Margin="30,50,30,50"
+                   Padding="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <!--Dialog Title-->
+                    <Frame Grid.Row="0" CornerRadius="24" BackgroundColor="{StaticResource HighColor}">
+                        <Label Text="{Binding Title}" Style="{StaticResource lblDialogTitle}" />
+                    </Frame>
+                    
+                    <!--Login-->
+                    <StackLayout Grid.Row="1" Spacing="2">
+                        <Label Text="Login" Style="{StaticResource lblEntryHead}" />
+                        <Frame Style="{StaticResource frmEntryFrame}" Padding="4">
+                            <Entry Text="{Binding Login, Mode=TwoWay}" TextColor="{StaticResource LowTextColor}"
+                                   Placeholder="Toque para digitar..." PlaceholderColor="{StaticResource HighTextColor}" />
+                        </Frame>
+                    </StackLayout>
+
+                    <!--Password-->
+                    <StackLayout Grid.Row="2" Spacing="2">
+                        <Label Text="Senha" Style="{StaticResource lblEntryHead}" />
+                        <Frame Style="{StaticResource frmEntryFrame}" Padding="4">
+                            <Entry Text="{Binding Password, Mode=TwoWay}" TextColor="{StaticResource LowTextColor}"
+                                   Placeholder="Toque para digitar..." PlaceholderColor="{StaticResource HighTextColor}" />
+                        </Frame>
+                    </StackLayout>
+                    
+                    <!--Full Name-->
+                    <StackLayout Grid.Row="3" Spacing="2">
+                        <Label Text="Nome Completo" Style="{StaticResource lblEntryHead}" />
+                        <Frame Style="{StaticResource frmEntryFrame}" Padding="4">
+                            <Entry Text="{Binding FullName, Mode=TwoWay}" TextColor="{StaticResource LowTextColor}"
+                                   Placeholder="Toque para digitar..." PlaceholderColor="{StaticResource HighTextColor}" />
+                        </Frame>
+                    </StackLayout>
+                    
+                    <!--Actions-->
+                    <Button Grid.Row="4" VerticalOptions="End" HorizontalOptions="Center" Text="Salvar"
+                            TextColor="{StaticResource HighTextColor}" BackgroundColor="{StaticResource HighColor}"
+                            Margin="0,0,0,15" CornerRadius="6" Command="{Binding CreateUser}" />
+
+                </Grid>
+            </Frame>
+            
+        </Grid>
+    </ContentView.Content>
+</dialogs:BaseDialog>

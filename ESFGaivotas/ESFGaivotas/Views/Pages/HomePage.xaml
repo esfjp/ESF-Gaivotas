@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:pages="clr-namespace:ESFGaivotas.Views.Pages"
+                xmlns:controls="clr-namespace:ESFGaivotas.Controls"
+                xmlns:dialogs="clr-namespace:ESFGaivotas.Views.Dialogs"
+                x:Class="ESFGaivotas.Views.Pages.HomePage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource NavigationBarHeight}" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <!--Navigation Bar-->
+            <Grid Grid.Row="0" BackgroundColor="{StaticResource HighColor}" Padding="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.ColumnSpan="2" Padding="5" RowSpacing="0" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Olá," TextColor="{StaticResource HighTextColor}" FontSize="20" 
+                           Grid.Row="0" Grid.Column="0" HorizontalOptions="End"/>
+                    <Label Text="{Binding FirstName, StringFormat='{0}!'}"
+                           TextColor="{StaticResource HighTextColor}" FontSize="20" 
+                           Grid.Row="1" Grid.ColumnSpan="2" HorizontalOptions="Center"/>
+                    <Image Grid.Row="0" Grid.Column="1" Source="GaivotaBranca.png" Margin="0"
+                           HorizontalOptions="Start" />
+                </Grid>
+                
+                <Button Grid.Column="0" CornerRadius="{StaticResource NavigationCornerRadius}" 
+                        BackgroundColor="{StaticResource MediumColor}" Margin="5" 
+                        ImageSource="Logo" HorizontalOptions="Center" VerticalOptions="Center"
+                        Command="{Binding OpenProfile}" />
+            </Grid>
+
+            <!--Loading Reports Indicator-->
+            <StackLayout Grid.Row="1" VerticalOptions="Center">
+                <ActivityIndicator HorizontalOptions="Center" IsRunning="{Binding IsReportLoading}" 
+                                   Color="{StaticResource HighColor}" />
+                <controls:BlinkingLabel Text="Carregando relatórios..." TextColor="{StaticResource HighColor}" 
+                                        HorizontalOptions="Center" IsBlinking="{Binding IsReportLoading}"
+                                        IsVisible="{Binding IsReportLoading}"/>
+            </StackLayout>
+
+            <!--Report Collection-->
+            <CollectionView Grid.Row="1" ItemsSource="{Binding ReportCollection}" Margin="5,0,5,0"
+                            IsVisible="{Binding IsReportLoading, Converter={StaticResource CVTBooleanTOInvertBoolean}}">
+                <CollectionView.EmptyView>
+                    <Grid>
+                        <Frame Padding="8" BackgroundColor="{StaticResource MediumColor}" CornerRadius="12" Opacity="0.6"
+                               HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label Text="Nenhum relatório criado!" TextColor="{StaticResource DarkHighColor}"
+                                   FontSize="20" />
+                        </Frame>
+                    </Grid>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" 
+                                     VerticalItemSpacing="4" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:SelectableFrame CornerRadius="8" BackgroundColor="{StaticResource HighColor}" Padding="5">
+                            <Grid RowSpacing="0" ColumnSpacing="0" Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Column="0" Source="PieChart.png" Margin="0" />
+
+                                <Frame Grid.Column="1" CornerRadius="8" BackgroundColor="{StaticResource DarkHighColor}"
+                                       Margin="0" Padding="5">
+                                    <FlexLayout BindableLayout.ItemsSource="{Binding DebrisCollection}" Wrap="Wrap"
+                                                Direction="Row" JustifyContent="Center" AlignItems="Center" AlignContent="Stretch">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Frame BackgroundColor="{StaticResource HighColor}" CornerRadius="6"
+                                                       Padding="5" BorderColor="{StaticResource MediumColor}">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Image Source="{Binding DebrisType, Converter={StaticResource CVTDebrisTypeTOMediumImage}}" />
+                                                        <Label Text="{Binding Quantity, StringFormat='x{0}'}" FontSize="16" FontAttributes="Bold" 
+                                                               VerticalOptions="End" HorizontalOptions="Center" 
+                                                               TextColor="{StaticResource LowTextColor}" />
+                                                    </StackLayout>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </FlexLayout>
+                                </Frame>
+
+                                <StackLayout Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Image Source="Weight.png" Margin="0" />
+                                    <Label Text="{Binding Weight}" TextColor="{StaticResource HighTextColor}"
+                                           HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </StackLayout>
+
+                            </Grid>
+                        </controls:SelectableFrame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+            <!--Command Buttons-->
+            <ImageButton Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center"
+                         CornerRadius="32" Opacity="0.5" Margin="5" Source="Add.png"
+                         BackgroundColor="{StaticResource LowColor}"
+                         Command="{Binding CreateReport}"/>
+
+            <!--Dialogs-->
+            <dialogs:ProfileDialog Grid.RowSpan="3" IsOpen="{Binding IsProfileOpen, Mode=TwoWay}"
+                                   Weight="{Binding TotalWeight}"/>
+
+        </Grid>
+    </ContentPage.Content>
+</pages:BasePage>

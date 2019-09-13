@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
+                        xmlns:converters="clr-namespace:ESFGaivotas.Converters"      
+                        x:Class="ESFGaivotas.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!--Sizes-->
+            <x:Int32 x:Key="NavigationCornerRadius">25</x:Int32>
+            <x:Double x:Key="NavigationButtonSize">50</x:Double>
+            <GridLength x:Key="NavigationBarHeight">64</GridLength>
+            
+            <!--Colors-->
+            <Color x:Key="HighColor">#1EA676</Color>
+            <Color x:Key="DarkHighColor">#038553</Color>
+            <Color x:Key="MediumColor">#DCDCDC</Color>
+            <Color x:Key="LowColor">#FFFFFF</Color>
+            
+            <Color x:Key="HighTextColor">#FFFFFF</Color>
+            <Color x:Key="LowTextColor">#000000</Color>
+
+            <Color x:Key="SelectedBackgroundColor">#ADD8E6</Color>
+            <Color x:Key="SelectedBorderColor">#87CEEB</Color>
+            <Color x:Key="UnselectedColor">#DCDCDC</Color>
+            
+            <!--Converters-->
+            <converters:CVTBooleanTOInvertBoolean x:Key="CVTBooleanTOInvertBoolean" />
+            <converters:CVTDebrisTypeTOMediumImage x:Key="CVTDebrisTypeTOMediumImage" />
+            <converters:CVTBooleanTOSelectionBorderColor x:Key="CVTBooleanTOSelectionBorderColor" />
+            <converters:CVTBooleanToSelectionBackgroundColor x:Key="CVTBooleanToSelectionBackgroundColor" />
+
+            <!--List of Styles-->
+            <!--Button-->
+            <Style TargetType="Button" x:Key="btnActionButton">
+                <Setter Property="TextColor" Value="{StaticResource HighTextColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource HighColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="CornerRadius" Value="6" />
+            </Style>
+            <Style TargetType="Button" x:Key="btnCancelButton">
+                <Setter Property="TextColor" Value="{StaticResource LowTextColor}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource MediumColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="CornerRadius" Value="6" />
+            </Style>
+            <!--Label-->
+            <Style TargetType="Label" x:Key="lblDialogTitle">
+                <Setter Property="TextColor" Value="{StaticResource HighTextColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="26" />
+            </Style>
+            <Style TargetType="Label" x:Key="lblEntryHead">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="Margin" Value="30,10,10,0" />
+                <Setter Property="TextColor" Value="{StaticResource LowTextColor}" />
+            </Style>
+            <Style TargetType="Label" x:Key="lblWatermark">
+                <Setter Property="Opacity" Value="0.4" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource HighColor}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <!--Entry-->
+            <Style TargetType="Entry" x:Key="etrEntryField">
+                <Setter Property="TextColor" Value="{StaticResource LowTextColor}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource HighTextColor}" />
+            </Style>
+            <!--Frame-->
+            <Style TargetType="Frame" x:Key="frmDialogContent">
+                <Setter Property="CornerRadius" Value="24" />
+                <Setter Property="BackgroundColor" Value="{StaticResource LowColor}" />
+                <Setter Property="Margin" Value="30,50,30,50" />
+                <Setter Property="Padding" Value="0" />
+            </Style>
+            <Style TargetType="Frame" x:Key="frmDialogTitle">
+                <Setter Property="CornerRadius" Value="24" />
+                <Setter Property="BackgroundColor" Value="{StaticResource HighColor}" />
+            </Style>
+            <Style TargetType="Frame" x:Key="frmEntryFrame">
+                <Setter Property="BackgroundColor" Value="{StaticResource MediumColor}" />
+                <Setter Property="Margin" Value="20,0,20,5"/>
+                <Setter Property="CornerRadius" Value="6"/>
+            </Style>
+            <!--Others-->
+            <Style TargetType="BoxView" x:Key="boxDialogBackground">
+                <Setter Property="BackgroundColor" Value="Black" />
+                <Setter Property="Opacity" Value="0.7" />
+            </Style>
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>

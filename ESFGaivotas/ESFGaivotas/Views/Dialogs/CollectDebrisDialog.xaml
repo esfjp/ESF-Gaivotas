@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<dialogs:BaseDialog xmlns="http://xamarin.com/schemas/2014/forms" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:dialogs="clr-namespace:ESFGaivotas.Views.Dialogs"
+                    mc:Ignorable="d"
+                    x:Class="ESFGaivotas.Views.Dialogs.CollectDebrisDialog"
+                    x:Name="baseDialog">
+    <ContentView.Content>
+        <Grid>
+
+            <!--Black Background-->
+            <BoxView Style="{StaticResource boxDialogBackground}" />
+            
+            <!--Dialog Content-->
+            <Frame Style="{StaticResource frmDialogContent}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!--Dialog Title-->
+                    <Frame Grid.Row="0" Style="{StaticResource frmDialogTitle}">
+                        <Label Text="Coleta" Style="{StaticResource lblDialogTitle}" />
+                    </Frame>
+
+                    <!--List of Debris Types-->
+                    <CollectionView Grid.Row="2" ItemsSource="{Binding DebrisTypeList}" BindingContext="{x:Reference baseDialog}" Margin="5,0,5,0">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Span="3"
+                                             Orientation="Vertical"
+                                             HorizontalItemSpacing="10"
+                                             VerticalItemSpacing="10" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <ImageButton x:Name="debrisType" Source="{Binding DebrisType, Converter={StaticResource CVTDebrisTypeTOMediumImage}}"
+                                             CornerRadius="6" Padding="5" BorderWidth="3" 
+                                             BackgroundColor="{Binding IsSelected, Converter={StaticResource CVTBooleanToSelectionBackgroundColor}}"
+                                             BorderColor="{Binding IsSelected, Converter={StaticResource CVTBooleanTOSelectionBorderColor}}"
+                                             Command="{Binding SelectDebrisType, Source={x:Reference baseDialog}}"
+                                             CommandParameter="{Binding .}" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <!--Add Debris-->
+                    <Button Grid.Row="3" Style="{StaticResource btnActionButton}"
+                            Text="Adicionar" VerticalOptions="End" Command="{Binding AddMapDebris}"
+                            CommandParameter="{Binding DebrisTypeList, Source={x:Reference baseDialog}}"/>
+
+                </Grid>
+            </Frame>
+
+        </Grid>
+    </ContentView.Content>
+</dialogs:BaseDialog>

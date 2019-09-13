@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ESFGaivotas.Views.Dialogs.LoadingDialog">
+    <ContentView.Content>
+        <Grid>
+            <BoxView BackgroundColor="Black" Opacity="0.5" />
+
+            <Frame Padding="20" CornerRadius="20" BackgroundColor="{StaticResource HighColor}"
+                   HorizontalOptions="Center" VerticalOptions="Center" Opacity="0.65">
+                <StackLayout>
+                    <ActivityIndicator IsRunning="True" Color="{StaticResource HighTextColor}" />
+                    <Label Text="Processando..." FontSize="16" FontAttributes="Bold"
+                           TextColor="{StaticResource HighTextColor}" />
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<dialogs:BaseDialog xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:dialogs="clr-namespace:ESFGaivotas.Views.Dialogs"
+             mc:Ignorable="d"
+             x:Class="ESFGaivotas.Views.Dialogs.WeightDialog">
+    <ContentView.Content>
+        <Grid>
+
+            <!--Black Background-->
+            <BoxView Style="{StaticResource boxDialogBackground}" />
+
+            <Frame Style="{StaticResource frmDialogContent}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    
+                    <!--Dialog Title-->
+                    <Frame Grid.Row="0" Style="{StaticResource frmDialogTitle}">
+                        <Label Text="Peso" Style="{StaticResource lblDialogTitle}" />
+                    </Frame>
+                    
+                    <!--Debris Collection-->
+                    <CollectionView Grid.Row="1" ItemsSource="{Binding ReportDebrisCollection}" Margin="5">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Span="4"
+                                             Orientation="Vertical"
+                                             HorizontalItemSpacing="10"
+                                             VerticalItemSpacing="10" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="{StaticResource HighColor}" CornerRadius="6" Padding="5" 
+                                       BorderColor="{StaticResource MediumColor}">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding DebrisType, Converter={StaticResource CVTDebrisTypeTOMediumImage}}" />
+                                        <Label Text="{Binding Quantity, StringFormat='x{0}'}" FontSize="16" FontAttributes="Bold" 
+                                               VerticalOptions="End" HorizontalOptions="Center" 
+                                               TextColor="{StaticResource LowTextColor}" />
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    
+                    <!--Weight Input-->
+                    <StackLayout Grid.Row="2" VerticalOptions="Start">
+                        <Image Source="WeightGreen" />
+                        <Frame Style="{StaticResource frmEntryFrame}" Padding="4">
+                            <Entry Keyboard="Numeric" Placeholder="0,00 kgs" Text="{Binding Weight, Mode=TwoWay}" />
+                        </Frame>
+                    </StackLayout>
+
+                    <!--Close-->
+                    <StackLayout Grid.Row="3" Orientation="Horizontal" HorizontalOptions="Center" Spacing="5">
+                        <Button Style="{StaticResource btnActionButton}"
+                                Text="Salvar" VerticalOptions="End" Command="{Binding ConfirmReport}"
+                                Margin="5" />
+                        <Button Style="{StaticResource btnCancelButton}"
+                                Text="Cancelar" VerticalOptions="End" Command="{Binding CancelReport}"
+                                Margin="5" />
+                    </StackLayout>
+                    
+                </Grid>
+            </Frame>
+
+          </Grid>
+    </ContentView.Content>
+</dialogs:BaseDialog>
