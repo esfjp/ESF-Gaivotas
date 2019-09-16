@@ -4,19 +4,25 @@ O ESF Gaivotas é um serviço sendo construído pelo ESF João Pessoa que visa f
 Tecnologias utilizadas até o momento:
 
 - Visual Studio Community 2019
-https://visualstudio.microsoft.com/vs/
+
+    - https://visualstudio.microsoft.com/vs/
 
 - Xamarin Forms (disponibilizado gratuitamente pelo Visual Studio Community 2019)
-https://github.com/xamarin/Xamarin.Forms
+
+    - https://github.com/xamarin/Xamarin.Forms
 
 - Entity Framework Core para SQLite (simulação do banco no local)
-https://github.com/aspnet/EntityFrameworkCore
+
+    - https://github.com/aspnet/EntityFrameworkCore
 
 - Prism Unity (uma framework de MVVM)
-https://github.com/PrismLibrary/Prism
+
+    - https://github.com/PrismLibrary/Prism
 
 - Google Maps (através de um plugin de terceiro)
-Link: https://github.com/amay077/Xamarin.Forms.GoogleMaps
+
+    - https://github.com/amay077/Xamarin.Forms.GoogleMaps
 
 - Gerador de relatórios do Syncfusion (ainda sendo implementado)
-Link: https://help.syncfusion.com/file-formats/xlsio/overview
+
+    - https://help.syncfusion.com/file-formats/xlsio/overview
